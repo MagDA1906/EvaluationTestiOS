@@ -54,26 +54,27 @@ private extension SearchViewController {
     }
     
     // Control timer
-    func startTimerWith(_ searchingString: String) {
-        if timer == nil {
-            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { (timer) in
-                let vc = AlbumsViewController(storageManager: self.storageManager, searchingText: searchingString)
-                self.navigationController?.pushViewController(vc, animated: true)
-                print("START TIMER!")
-                timer.invalidate()
-            })
-        } else {
-            timer!.invalidate()
-            timer = nil
-        }
-    }
-    
-    func stopTimer() {
-        if timer != nil {
-            timer?.invalidate()
-            timer = nil
-        }
-    }
+    // INFO: - It does not work correctly when erase a string of two characters in the SearchBar. The timer actually works on the last erased character, while the string in the SearchBar is completely erased. Instead of this function, we use Done button for starting search.
+//    func startTimerWith(_ searchingString: String) {
+//        if timer == nil {
+//            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { (timer) in
+//                let vc = AlbumsViewController(storageManager: self.storageManager, searchingText: searchingString)
+//                self.navigationController?.pushViewController(vc, animated: true)
+//                print("START TIMER!")
+//                timer.invalidate()
+//            })
+//        } else {
+//            timer!.invalidate()
+//            timer = nil
+//        }
+//    }
+//
+//    func stopTimer() {
+//        if timer != nil {
+//            timer?.invalidate()
+//            timer = nil
+//        }
+//    }
 }
 
 // MARK: - UISearchBarDelegate
@@ -93,15 +94,22 @@ extension SearchViewController: UISearchBarDelegate {
         searchBar.setShowsCancelButton(false, animated: true)
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count > 0 {
-            let newSearchString = searchText.replacingOccurrences(of: " ", with: "+")
-            stopTimer()
-            startTimerWith(newSearchString)
-        }
-    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchText.count > 0 {
+//            let newSearchString = searchText.replacingOccurrences(of: " ", with: "+")
+//            stopTimer()
+//            startTimerWith(newSearchString)
+//        }
+//    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if let searchBarText = searchBar.text {
+            if searchBarText.count > 0 {
+                let vc = AlbumsViewController(storageManager: self.storageManager, searchingText: searchBarText)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
         searchBar.resignFirstResponder()
     }
 }
