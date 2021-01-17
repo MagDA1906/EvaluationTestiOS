@@ -45,10 +45,6 @@ class AlbumDetailViewController: UIViewController {
         configureNavigationItem()
         configureTableView()
     }
-    
-    deinit {
-        print("AlbumDetailViewController DEINITIALIZATION!")
-    }
 }
 
 // MARK: - Private Functions
@@ -66,7 +62,7 @@ private extension AlbumDetailViewController {
         guard let album = storageManager.getModelById(albumId) else {
             return cell
         }
-        let stringFromDate = storageManager.getDateFrom(album)
+        let stringFromDate = storageManager.getDateFrom(album) // Conversed Date to String and set to header cell property
         headerCell.configureSelfUsingModel(album, stringFromDate)
         return headerCell
     }

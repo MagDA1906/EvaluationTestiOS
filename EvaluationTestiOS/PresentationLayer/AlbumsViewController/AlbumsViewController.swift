@@ -142,8 +142,6 @@ extension AlbumsViewController: UICollectionViewDelegate {
                 }, completion: { (finished) in
                     let vc = AlbumDetailViewController(storageManager: self.storageManager, albumId: album.collectionId)
                     self.navigationController?.pushViewController(vc, animated: true)
-//                    AppCoordinator.shared.goToAlbumDetailViewController(from: self, withAlbum: album.collectionId)
-                    print("Go to AlbumDetailViewController")
                 })
             }
         }

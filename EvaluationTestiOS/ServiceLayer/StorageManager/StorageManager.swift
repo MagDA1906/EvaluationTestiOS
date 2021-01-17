@@ -60,7 +60,6 @@ public class StorageManager: StorageManagerProtocol {
     }
     
     // Get model by album ID for present in AlbumDetailViewController
-    // BinarySearch
     func getModelById(_ id: Int) -> Album? {
         
         for album in albumsArray {
