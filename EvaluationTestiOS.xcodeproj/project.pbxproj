@@ -10,6 +10,7 @@
 		8CE2427D656A2A167E2AD8E7 /* Pods_EvaluationTestiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950A625A828FB3FAA9A7FBFC /* Pods_EvaluationTestiOS.framework */; };
 		9D48758325B5664800E2A4EA /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48758225B5664800E2A4EA /* RealmModel.swift */; };
 		9D48758525B573B800E2A4EA /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48758425B573B800E2A4EA /* HistoryModel.swift */; };
+		9D48758725B5868200E2A4EA /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48758625B5868200E2A4EA /* SearchTableViewCell.swift */; };
 		9D49E6E925B46D2D00012D33 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D49E6E825B46D2D00012D33 /* AlbumDetailViewController.swift */; };
 		9D49E6EF25B46E2C00012D33 /* HeaderAlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D49E6ED25B46E2C00012D33 /* HeaderAlbumTableViewCell.swift */; };
 		9D49E6F025B46E2C00012D33 /* HeaderAlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D49E6EE25B46E2C00012D33 /* HeaderAlbumTableViewCell.xib */; };
@@ -22,7 +23,6 @@
 		9D63938C25B2E175006A6419 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63938A25B2E175006A6419 /* SearchViewController.swift */; };
 		9D63938D25B2E175006A6419 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D63938B25B2E175006A6419 /* SearchViewController.xib */; };
 		9D63939025B2E1B2006A6419 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63938E25B2E1B2006A6419 /* HistoryViewController.swift */; };
-		9D63939125B2E1B2006A6419 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D63938F25B2E1B2006A6419 /* HistoryViewController.xib */; };
 		9D63939425B310EB006A6419 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63939225B310EB006A6419 /* AlbumsViewController.swift */; };
 		9D63939525B310EB006A6419 /* AlbumsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D63939325B310EB006A6419 /* AlbumsViewController.xib */; };
 		9D63939F25B3256C006A6419 /* AlbumsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63939D25B3256C006A6419 /* AlbumsCollectionViewCell.swift */; };
@@ -49,6 +49,7 @@
 		950A625A828FB3FAA9A7FBFC /* Pods_EvaluationTestiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EvaluationTestiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D48758225B5664800E2A4EA /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		9D48758425B573B800E2A4EA /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
+		9D48758625B5868200E2A4EA /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		9D49E6E825B46D2D00012D33 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		9D49E6ED25B46E2C00012D33 /* HeaderAlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderAlbumTableViewCell.swift; sourceTree = "<group>"; };
 		9D49E6EE25B46E2C00012D33 /* HeaderAlbumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderAlbumTableViewCell.xib; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		9D63938A25B2E175006A6419 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9D63938B25B2E175006A6419 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		9D63938E25B2E1B2006A6419 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		9D63938F25B2E1B2006A6419 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		9D63939225B310EB006A6419 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		9D63939325B310EB006A6419 /* AlbumsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumsViewController.xib; sourceTree = "<group>"; };
 		9D63939D25B3256C006A6419 /* AlbumsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				9D63938E25B2E1B2006A6419 /* HistoryViewController.swift */,
-				9D63938F25B2E1B2006A6419 /* HistoryViewController.xib */,
+				9D48758625B5868200E2A4EA /* SearchTableViewCell.swift */,
 			);
 			path = HistoryViewController;
 			sourceTree = "<group>";
@@ -381,7 +381,6 @@
 				9D49E6F025B46E2C00012D33 /* HeaderAlbumTableViewCell.xib in Resources */,
 				9D546CC725B2D19000C7E8B7 /* Assets.xcassets in Resources */,
 				9D63938D25B2E175006A6419 /* SearchViewController.xib in Resources */,
-				9D63939125B2E1B2006A6419 /* HistoryViewController.xib in Resources */,
 				9D63939525B310EB006A6419 /* AlbumsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +443,7 @@
 				9D48758525B573B800E2A4EA /* HistoryModel.swift in Sources */,
 				9D6C401D25B3785D0010EDA7 /* JSONParameterEncoder.swift in Sources */,
 				9D63939425B310EB006A6419 /* AlbumsViewController.swift in Sources */,
+				9D48758725B5868200E2A4EA /* SearchTableViewCell.swift in Sources */,
 				9D6C400825B376DB0010EDA7 /* EvaluationAPI.swift in Sources */,
 				9D6C400E25B377570010EDA7 /* EndPointType.swift in Sources */,
 				9D49E6EF25B46E2C00012D33 /* HeaderAlbumTableViewCell.swift in Sources */,

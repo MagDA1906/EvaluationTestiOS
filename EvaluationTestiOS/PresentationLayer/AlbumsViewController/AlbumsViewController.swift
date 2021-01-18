@@ -91,7 +91,10 @@ private extension AlbumsViewController {
             
             if let error = error {
                 print(error)
-                self.showAlert()
+                
+                DispatchQueue.main.async {
+                    self.showAlert()
+                }
             }
             
             if let albums = albums {
@@ -102,7 +105,9 @@ private extension AlbumsViewController {
                         self.collectionView.reloadData()
                     }
                 } else {
-                    self.showAlert()
+                    DispatchQueue.main.async {
+                        self.showAlert()
+                    }
                 }
             }
         }

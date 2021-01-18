@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct HistoryModel {
+struct History {
     var searchingString: String = ""
 }

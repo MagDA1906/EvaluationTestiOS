@@ -12,7 +12,7 @@ import RealmSwift
 class SearchViewController: UIViewController {
     
     // MARK: - Private properties
-    private var timer: Timer?
+//    private var timer: Timer?
     private let storageManager = StorageManager()
     
     // MARK: - IBOutlets
@@ -29,6 +29,12 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let realm = try! Realm()
+//        try! realm.write() {
+//
+//            realm.deleteAll()
+//        }
         
         print(Realm.Configuration.defaultConfiguration.fileURL!)
 
@@ -85,10 +91,23 @@ private extension SearchViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
+        let realmModels = try! Realm().objects(RealmModel.self)
+        print("RealmModels count = \(realmModels)")
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         // TODO: - Pass text to controller and save to database
+        guard let searchingString = searchBar.text else {
+            return
+        }
+        if searchingString != "" {
+            let realm = try! Realm()
+            try! realm.write() {
+                let rModel = RealmModel()
+                rModel.searchingText = searchingString
+                realm.add(rModel)
+            }
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -88,7 +88,9 @@ private extension AlbumDetailViewController {
             
             if let error = error {
                 print(error)
-                self.showAlert()
+                DispatchQueue.main.async {
+                    self.showAlert()
+                }
             }
             
             if let tracks = tracks {
@@ -100,7 +102,9 @@ private extension AlbumDetailViewController {
                         self.tableView.reloadData()
                     }
                 } else {
-                    self.showAlert()
+                    DispatchQueue.main.async {
+                        self.showAlert()
+                    }
                 }
             }
         }
