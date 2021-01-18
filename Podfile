@@ -7,4 +7,5 @@ target 'EvaluationTestiOS' do
 
   # Pods for EvaluationTestiOS
     pod 'SDWebImage', '~> 5.0'
+    pod 'RealmSwift'
 end

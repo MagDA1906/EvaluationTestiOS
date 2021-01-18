@@ -16,8 +16,8 @@ class TabBarController: UITabBarController {
         let searchVC = SearchViewController()
         let historyVC = HistoryViewController()
         
-        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
-        historyVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        historyVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
         
         let viewCintrollerList = [searchVC, historyVC]
         viewControllers = viewCintrollerList

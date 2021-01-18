@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8CE2427D656A2A167E2AD8E7 /* Pods_EvaluationTestiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950A625A828FB3FAA9A7FBFC /* Pods_EvaluationTestiOS.framework */; };
+		9D48758325B5664800E2A4EA /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48758225B5664800E2A4EA /* RealmModel.swift */; };
+		9D48758525B573B800E2A4EA /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48758425B573B800E2A4EA /* HistoryModel.swift */; };
 		9D49E6E925B46D2D00012D33 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D49E6E825B46D2D00012D33 /* AlbumDetailViewController.swift */; };
 		9D49E6EF25B46E2C00012D33 /* HeaderAlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D49E6ED25B46E2C00012D33 /* HeaderAlbumTableViewCell.swift */; };
 		9D49E6F025B46E2C00012D33 /* HeaderAlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D49E6EE25B46E2C00012D33 /* HeaderAlbumTableViewCell.xib */; };
@@ -45,6 +47,8 @@
 		3C47632829F2E27F4F0AFDF8 /* Pods-EvaluationTestiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluationTestiOS.release.xcconfig"; path = "Target Support Files/Pods-EvaluationTestiOS/Pods-EvaluationTestiOS.release.xcconfig"; sourceTree = "<group>"; };
 		7B5CB87B8FDB782B0B241432 /* Pods-EvaluationTestiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EvaluationTestiOS.debug.xcconfig"; path = "Target Support Files/Pods-EvaluationTestiOS/Pods-EvaluationTestiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		950A625A828FB3FAA9A7FBFC /* Pods_EvaluationTestiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EvaluationTestiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D48758225B5664800E2A4EA /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		9D48758425B573B800E2A4EA /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		9D49E6E825B46D2D00012D33 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		9D49E6ED25B46E2C00012D33 /* HeaderAlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderAlbumTableViewCell.swift; sourceTree = "<group>"; };
 		9D49E6EE25B46E2C00012D33 /* HeaderAlbumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderAlbumTableViewCell.xib; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 			children = (
 				9D6393A425B328B9006A6419 /* AlbumModel.swift */,
 				9D6393A625B328D1006A6419 /* TrackModel.swift */,
+				9D48758225B5664800E2A4EA /* RealmModel.swift */,
+				9D48758425B573B800E2A4EA /* HistoryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				9D49E6E925B46D2D00012D33 /* AlbumDetailViewController.swift in Sources */,
 				9D6C400A25B3770A0010EDA7 /* NetworkManager.swift in Sources */,
 				9D6C401625B377CB0010EDA7 /* Router.swift in Sources */,
+				9D48758525B573B800E2A4EA /* HistoryModel.swift in Sources */,
 				9D6C401D25B3785D0010EDA7 /* JSONParameterEncoder.swift in Sources */,
 				9D63939425B310EB006A6419 /* AlbumsViewController.swift in Sources */,
 				9D6C400825B376DB0010EDA7 /* EvaluationAPI.swift in Sources */,
@@ -452,6 +459,7 @@
 				9D6393AB25B336E7006A6419 /* StorageManager.swift in Sources */,
 				9D6C401425B377B10010EDA7 /* NetworkRouter.swift in Sources */,
 				9D546CC025B2D18800C7E8B7 /* SceneDelegate.swift in Sources */,
+				9D48758325B5664800E2A4EA /* RealmModel.swift in Sources */,
 				9D63939F25B3256C006A6419 /* AlbumsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
