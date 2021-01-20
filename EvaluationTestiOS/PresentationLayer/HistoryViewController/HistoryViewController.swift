@@ -25,14 +25,6 @@ class HistoryViewController: UIViewController {
         return view
     }()
     
-//    private let backView: UIImageView = {
-//        let imageName = "Background.jpg"
-//        let image = UIImage(named: imageName)
-//        let imageView = UIImageView(image: image!)
-//        imageView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-//        return imageView
-//    }()
-    
     // MARK: - Life Cycle
     
     public init(storageManager: StorageManagerProtocol) {
@@ -53,8 +45,7 @@ class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        configureBackView()
+
         configureTableView()
         configureClearButton()
     }
@@ -66,18 +57,6 @@ extension HistoryViewController {
     func configureNavigationItem() {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
-    // Configure BackView
-//    func configureBackView() {
-//
-//        backView.frame = view.frame
-//        view.addSubview(backView)
-//
-//        backView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-//        backView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-//        backView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-//        backView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-//    }
     
     // Configure ClearButton
     func configureClearButton() {
@@ -102,9 +81,6 @@ extension HistoryViewController {
     
     // Create and confugure TableView
     func configureTableView() {
-        
-//        tableView = UITableView()
-        
         tableView.dataSource = self
         tableView.delegate = self
     
@@ -112,7 +88,6 @@ extension HistoryViewController {
         
         self.tableView.backgroundView?.backgroundColor = UIColor.clear
         self.tableView.backgroundColor = UIColor.clear
-//        view.addSubview(tableView)
         
         tableView.tableFooterView = footerView
         tableView.frame = view.frame
@@ -121,13 +96,6 @@ extension HistoryViewController {
         
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
-        
-        // tableView constraints
-        
-//        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-//        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-//        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-//        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
     }
     
     // Create SearchTableViewCell
