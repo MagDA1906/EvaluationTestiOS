@@ -13,7 +13,6 @@ class HistoryViewController: UIViewController {
     
     // MARK: - Private Properties
     
-//    private var tableView: UITableView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var clearButton: UIButton!
     @IBOutlet private weak var backView: UIImageView!
