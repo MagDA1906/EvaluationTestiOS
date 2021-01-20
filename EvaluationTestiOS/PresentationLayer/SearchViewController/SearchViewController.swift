@@ -12,30 +12,61 @@ import RealmSwift
 class SearchViewController: UIViewController {
     
     // MARK: - Private properties
-    private var timer: Timer?
-    private let storageManager = StorageManager()
+//    private var timer: Timer?
+    private let storageManager: StorageManagerProtocol
+    
+    private enum State {
+        
+        case viewed
+        case unViewed
+        
+        var change: State {
+            switch self {
+            case .viewed:
+                return .unViewed
+            case .unViewed:
+                return .viewed
+            }
+        }
+    }
     
     // MARK: - IBOutlets
     
     @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var mainTitleLabel: UILabel!
+    
+    private var state: State = .unViewed
 
     // MARK: - Life Cycle
+    
+    public init(storageManager: StorageManagerProtocol) {
+        self.storageManager = storageManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         hideNavigationBar()
+        animateMainTitleLabel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-
-        view.backgroundColor = UIColor.yellow
-        self.title = "Search"
+//        let realm = try! Realm()
+//        try! realm.write() {
+//
+//            realm.deleteAll()
+//        }
         
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         configureSearchBar()
+        configureMainTitleLabel()
     }
 }
 
@@ -43,12 +74,37 @@ class SearchViewController: UIViewController {
 
 private extension SearchViewController {
     
+    // Configure infoLabel
+    func configureMainTitleLabel() {
+        mainTitleLabel.alpha = 0.0
+    }
+    
+    // Animate infoLabel
+    func animateMainTitleLabel() {
+        
+        if state == .unViewed {
+            UIView.animate(withDuration: 0.2, delay: 1.0, options: .curveEaseInOut, animations: {
+                self.mainTitleLabel.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                self.mainTitleLabel.alpha = 0.5
+            }) { (finished) in
+                UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+                    self.mainTitleLabel.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                    self.mainTitleLabel.alpha = 1.0
+                }, completion: { (finished) in
+                    print("Animation finished")
+                    self.state = self.state.change
+                })
+            }
+        }
+    }
+    
     // Configure SearBar
     func configureSearchBar() {
         
         searchBar.delegate = self
+        
         searchBar.showsCancelButton = false
-        searchBar.barTintColor = UIColor.yellow
+        searchBar.searchTextField.backgroundColor = .white
     }
     
     // Configure NavigationItem
@@ -88,7 +144,28 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        // TODO: - Pass text to controller and save to database
+        guard let searchingString = searchBar.text else { return }
+    
+        if searchingString != "" {
+            let realm = try! Realm()
+            let realmArray = realm.objects(RealmModel.self)
+            if realmArray.count > 0 {
+                let lastSearchString = realmArray[realmArray.count - 1]
+                if lastSearchString.searchingText != searchingString {
+                    try! realm.write() {
+                        let rModel = RealmModel()
+                        rModel.searchingText = searchingString
+                        realm.add(rModel)
+                    }
+                }
+            } else {
+                try! realm.write() {
+                    let rModel = RealmModel()
+                    rModel.searchingText = searchingString
+                    realm.add(rModel)
+                }
+            }
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

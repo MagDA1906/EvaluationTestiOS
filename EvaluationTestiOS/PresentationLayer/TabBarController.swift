@@ -9,18 +9,20 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    
+    private let storageManager = StorageManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let searchVC = SearchViewController()
-        let historyVC = HistoryViewController()
+        let searchVC = SearchViewController(storageManager: storageManager)
+        let historyVC = HistoryViewController(storageManager: storageManager)
         
         searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         historyVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
         
-        let viewCintrollerList = [searchVC, historyVC]
-        viewControllers = viewCintrollerList
+        let viewControllerList = [searchVC, historyVC]
+        viewControllers = viewControllerList
     }
 }
 

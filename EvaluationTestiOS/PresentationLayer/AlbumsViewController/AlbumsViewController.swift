@@ -17,6 +17,7 @@ class AlbumsViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
     
     // MARK: - Life Cycle
     public init(storageManager: StorageManagerProtocol, searchingText: String) {
@@ -57,7 +58,8 @@ private extension AlbumsViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.backgroundColor = #colorLiteral(red: 0.8509803922, green: 0.9019607843, blue: 0.937254902, alpha: 1)
+        self.collectionView.backgroundView?.backgroundColor = UIColor.clear
+        self.collectionView.backgroundColor = UIColor.clear
         
         let albumCellReuseID = AlbumsCollectionViewCell.nibName
         let albumCellNib = UINib(nibName: albumCellReuseID, bundle: nil)
@@ -83,6 +85,7 @@ private extension AlbumsViewController {
     
     // Fetch albums using text from SearchBar
     func fetchAlbumsUsing(_ text: String) {
+        spinner.startAnimating()
         storageManager.removeLastRequestData(description: .albums)
         // TODO: move paginationOffset in to calling method
         let paginationOffset = 0
@@ -91,7 +94,12 @@ private extension AlbumsViewController {
             
             if let error = error {
                 print(error)
-                self.showAlert()
+                
+                DispatchQueue.main.async {
+                    self.spinner.stopAnimating()
+                    self.spinner.hidesWhenStopped = true
+                    self.showAlert()
+                }
             }
             
             if let albums = albums {
@@ -99,10 +107,16 @@ private extension AlbumsViewController {
                     self.storageManager.save(description: .albums, data: albums)
                     
                     DispatchQueue.main.async {
+                        self.spinner.stopAnimating()
+                        self.spinner.hidesWhenStopped = true
                         self.collectionView.reloadData()
                     }
                 } else {
-                    self.showAlert()
+                    DispatchQueue.main.async {
+                        self.spinner.stopAnimating()
+                        self.spinner.hidesWhenStopped = true
+                        self.showAlert()
+                    }
                 }
             }
         }

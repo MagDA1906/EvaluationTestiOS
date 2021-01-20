@@ -54,7 +54,9 @@ extension AlbumsCollectionViewCell {
         guard let url = URL(string: model.artworkUrl100) else { return }
         
         collectionImage.sd_setImage(with: url) { (image, error, imageCachType, url) in
-            self.spinner.stopAnimating()
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+            }
         }
     }
 }
