@@ -38,6 +38,9 @@ class SearchTableViewCell: UITableViewCell {
         
         self.selectionStyle = UITableViewCell.SelectionStyle.none
         
+        self.backgroundView?.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clear
+        
         let frame = self.bounds
         backView.frame = frame
         
@@ -57,8 +60,6 @@ class SearchTableViewCell: UITableViewCell {
         searchNameLabel.centerYAnchor.constraint(equalTo: backView.centerYAnchor).isActive = true
         searchNameLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 16).isActive = true
         searchNameLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -8).isActive = true
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

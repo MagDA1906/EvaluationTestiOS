@@ -38,12 +38,15 @@ class TrackTableViewCell: UITableViewCell {
         
         self.selectionStyle = UITableViewCell.SelectionStyle.none
         
+        self.backgroundView?.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clear
+        
         let frame = self.bounds
         backView.frame = frame
-        
+
         backView.layer.cornerRadius = 8
         backView.layer.masksToBounds = true
-        
+
         addSubview(backView)
         addSubview(trackNameLabel)
         

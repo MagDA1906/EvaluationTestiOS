@@ -29,6 +29,7 @@ class AlbumDetailViewController: UIViewController {
     // MARK: - Private Properties
     
     private var tableView: UITableView!
+    private var spinner: UIActivityIndicatorView!
     
     private let footerView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -36,20 +37,41 @@ class AlbumDetailViewController: UIViewController {
         return view
     }()
     
+    private let backView: UIImageView = {
+        let imageName = "Background.jpg"
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        return imageView
+    }()
+    
     // MARK: - Life Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchTracks()
+        configureBackView()
         configureNavigationItem()
         configureTableView()
+        configureSpinner()
+        fetchTracks()
     }
 }
 
 // MARK: - Private Functions
 
 private extension AlbumDetailViewController {
+    
+    func configureBackView() {
+        
+        backView.frame = view.frame
+        view.addSubview(backView)
+        
+        backView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        backView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        backView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        backView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+    }
     
     // Create HeaderAlbumTableViewCell
     func headerCellForIndexPath(_ indexPath: IndexPath) -> UITableViewCell {
@@ -83,6 +105,7 @@ private extension AlbumDetailViewController {
     
     // Fetch tracks for current album
     func fetchTracks() {
+        didStartSpinner()
         storageManager.removeLastRequestData(description: .tracks)
         networkManager.getAlbumTracks(albumId: albumId) { (tracks, error) in
             
@@ -90,6 +113,7 @@ private extension AlbumDetailViewController {
                 print(error)
                 DispatchQueue.main.async {
                     self.showAlert()
+                    self.didStopSpinner()
                 }
             }
             
@@ -100,10 +124,12 @@ private extension AlbumDetailViewController {
                     DispatchQueue.main.async {
                         dump(tracks)
                         self.tableView.reloadData()
+                        self.didStopSpinner()
                     }
                 } else {
                     DispatchQueue.main.async {
                         self.showAlert()
+                        self.didStopSpinner()
                     }
                 }
             }
@@ -134,6 +160,9 @@ private extension AlbumDetailViewController {
         tableView.register(headerCellNib, forCellReuseIdentifier: headerCellReuseId)
         tableView.register(TrackTableViewCell.self, forCellReuseIdentifier: TrackTableViewCell.reuseId)
         
+        self.tableView.backgroundView?.backgroundColor = UIColor.clear
+        self.tableView.backgroundColor = UIColor.clear
+        
         view.addSubview(tableView)
         
         tableView.tableFooterView = footerView
@@ -150,6 +179,33 @@ private extension AlbumDetailViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+    }
+    
+    // configure spinner
+    func configureSpinner() {
+        
+        spinner = UIActivityIndicatorView()
+        spinner.hidesWhenStopped = true
+        spinner.style = .large
+        spinner.color = #colorLiteral(red: 0.70342803, green: 0.9250234962, blue: 0.9283149838, alpha: 1)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        tableView.addSubview(spinner)
+
+
+        // spinner constraints
+        spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
+        spinner.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+    }
+    
+    func didStartSpinner() {
+        
+        spinner.startAnimating()
+        self.view.bringSubviewToFront(spinner)
+    }
+    
+    func didStopSpinner() {
+        
+        spinner.stopAnimating()
     }
     
     // Configure NavigationItem
