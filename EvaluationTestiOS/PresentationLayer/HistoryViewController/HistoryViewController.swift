@@ -96,8 +96,8 @@ extension HistoryViewController {
         try! realm.write() {
 
             realm.deleteAll()
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     // Create and confugure TableView
